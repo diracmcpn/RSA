@@ -1,0 +1,24 @@
+I have always heard about RSA here and there. This is usually used in payments process with bank card, online payments...
+But I wonder how this algorithm works. After reading some documentations such as : 
+- www.siteduzero.com/tutoriel-3-2170-la-cryptographie-asymetrique-rsa.html
+- http://simple.wikipedia.org/wiki/RSA 
+I have decided to write a simple code in C++ using the library GMP to encrypt and decipher a message by RSA algorithm.
+
+The concept is comprehensible easily. Everyone gets a public and a private key. If you want to send a message to an addressee, you use his public key. If the addressee want to read the message. He uses his private key.
+
+What about the algorithm ?
+	1) Generate two random prime numbers P and Q.
+	2) Compute N = P*Q.
+	3) Compute the totient M = (P-1)*(Q-1). M <= N et M is coprime to N.
+	4) Choose a number C >1 and coprime to M.
+	5) Here we have the public key (N,C);
+	6) Choose U to satisfy C*U = 1 mod(M).
+	7) Here we have the private key (N,U);
+
+What about the encryption ?
+	In the simple case we can use the letter's ASCII decimal number. Example B = 66.
+	Encrypt : e = 66<sup>C</sup> mod(N).
+	Decrypt : d = e<sup>U</sup> mod(N).
+
+Keep in mind that longer are the keys, more secure is your message but longer is the time to encrypt and decrypt.
+Don't forget to link to the library gmpxxx and gmp when compiling !
